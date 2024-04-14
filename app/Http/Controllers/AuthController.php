@@ -29,10 +29,29 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => 'Admin'
+            'level' => 'Admin',
+            'mobile' => $request->mobile,
+            'address' => $request->address,
         ]);
 
         return redirect()->route('login');
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $user = Auth::user();
+
+        Validator::make($request->all(), [
+            'mobile' => 'nullable|string',
+            'address' => 'nullable|string',
+        ])->validate();
+
+        $user->update([
+            'mobile' => $request->mobile, // Update nomor telepon
+            'address' => $request->address, // Update alamat
+        ]);
+
+        return redirect()->route('profile')->with('success', 'Profile updated successfully');
     }
 
     public function login()
