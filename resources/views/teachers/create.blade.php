@@ -5,7 +5,7 @@
 @section('contents')
     <h1 class="mb-0">Edit Teacher</h1>
     <hr />
-    <form action="{{ route('teachers.update', $teacher->id) }}" method="POST">
+    <form action="{{ route('teachers.update', $teacher->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
