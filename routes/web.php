@@ -44,6 +44,16 @@ Route::middleware('auth')->group(function (){
         Route::delete('destroy/{id}', 'destroy')->name('teachers.destroy');
     });
 
+    Route::controller(CourseController::class)->prefix('courses')->group(function () {
+        Route::get('', 'index')->name('courses');
+        Route::get('create', 'create')->name('courses.create');
+        Route::post('store', 'store')->name('courses.store');
+        Route::get('show/{id}', 'show')->name('courses.show');
+        Route::get('edit/{id}', 'edit')->name('courses.edit');
+        Route::put('edit/{id}', 'update')->name('courses.update');
+        Route::delete('destroy/{id}', 'destroy')->name('courses.destroy');
+    });
+
     Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
 });
 

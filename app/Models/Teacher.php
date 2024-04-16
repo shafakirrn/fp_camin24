@@ -15,4 +15,10 @@ class Teacher extends Model
         'mobile',
         'subject'
     ];
+
+    // each teacher teaches one course
+    public function course()
+    {
+        return $this->hasOne(Course::class); 
+    }
 }

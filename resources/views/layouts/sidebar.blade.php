@@ -29,6 +29,12 @@
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Teachers</span></a>
   </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('courses') }}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Courses</span></a>
+  </li>
   
   <li class="nav-item">
     <a class="nav-link" href="/profile">

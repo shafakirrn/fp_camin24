@@ -15,6 +15,12 @@ class Student extends Model
         'school',
         'address',
         'mobile',
-        'subject'
+        'subject',
     ];
+
+    // each student take multiple courses
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class); 
+    }
 }

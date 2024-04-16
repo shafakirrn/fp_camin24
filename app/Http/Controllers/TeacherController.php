@@ -30,8 +30,8 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required', // Add any other validation rules as needed
-            // Add validation rules for other fields here
+            'name' => 'required', 
+            
         ]);
 
         Teacher::create($request->all());
