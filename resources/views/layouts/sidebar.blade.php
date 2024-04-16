@@ -31,7 +31,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('courses') }}">
+    <a class="nav-link" href="{{ route('courses.index') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Courses</span></a>
   </li>

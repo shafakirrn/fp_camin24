@@ -12,8 +12,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = Student::orderBy('created_at', 'DESC')->get();
-        return view('students.index', compact('student'));
+        $students = Student::orderBy('created_at', 'DESC')->get();
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -30,8 +30,8 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required', // Add any other validation rules as needed
-            // Add validation rules for other fields here
+            'name' => 'required', 
+            
         ]);
 
         Student::create($request->all());

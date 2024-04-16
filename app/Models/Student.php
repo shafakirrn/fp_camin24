@@ -21,6 +21,7 @@ class Student extends Model
     // each student take multiple courses
     public function courses()
     {
-        return $this->belongsToMany(Course::class); 
+    return $this->hasMany(Course::class);
     }
+
 }

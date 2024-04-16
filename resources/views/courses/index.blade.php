@@ -17,6 +17,7 @@
                         <th>Name</th>
                         <th>Schedule</th>
                         <th>Teacher</th>
+                        <th>Student</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -27,6 +28,13 @@
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->schedule }}</td>
                             <td>{{ $course->teacher->name }}</td>
+                            <td>
+                                @if ($course->student)
+                                    {{ $course->student->name }}
+                                @else
+                                    No student enrolled
+                                @endif
+                            </td>
                             <td>
                                 <a href="{{ route('courses.show', $course->id) }}" class="btn btn-info btn-sm">View</a>
                                 <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-primary btn-sm">Edit</a>

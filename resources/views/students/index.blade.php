@@ -28,8 +28,8 @@
             </tr>
         </thead>
         <tbody>+
-            @if($student->count() > 0)
-                @foreach($student as $rs)
+            @if($students->count() > 0)
+                @foreach($students as $rs)
                     <tr>
                         <td class="align-middle">{{ $loop->iteration }}</td>
                         <td class="align-middle">{{ $rs->name }}</td>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Teacher;
+use App\Models\Student;
+
 
 class CourseController extends Controller
 {
@@ -12,34 +15,38 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course = Course::orderBy('created_at', 'DESC')->get();
-        return view('courses.index', compact('course'));
+        $courses = Course::with('student')->orderBy('created_at', 'DESC')->get();
+        return view('courses.index', compact('courses'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('courses.create');
+        $students = Student::all(); // retrieve all students
+        $teachers = Teacher::all(); // retrieve all teachers
+        return view('courses.create', compact('students', 'teachers')); 
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'schedule' => 'required',
-            'teacher_id' => 'required|exists:teachers,id', 
-            
-        ]);
+{
+    $request->validate([
+        'name' => 'required',
+        'schedule' => 'required',
+        'teacher_id' => 'required|exists:teachers,id', 
+        'student_id' => 'required|exists:students,id', 
+    ]);
 
-        Course::create($request->all());
+    Course::create($request->all());
 
-        return redirect()->route('courses')->with('success', 'Course added successfully');
-    }
+    return redirect()->route('courses.index')->with('success', 'Course created successfully');
+}
+
 
     /**
      * Display the specified resource.
@@ -53,28 +60,32 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         $course = Course::findOrFail($id);
-        return view('courses.edit', compact('course'));
+        $teachers = Teacher::all(); 
+        $students = Student::all();
+        return view('courses.edit', compact('course', 'teachers', 'students'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'name' => 'required',
-            'schedule' => 'required',
-            'teacher_id' => 'required|exists:teachers,id', 
-        ]);
+{
+    $request->validate([
+        'name' => 'required',
+        'schedule' => 'required',
+        'teacher_id' => 'required|exists:teachers,id', 
+        'student_id' => 'required|exists:students,id',
+    ]);
 
-        $course = Course::findOrFail($id);
-        $course->update($request->all());
+    $course = Course::findOrFail($id);
+    $course->update($request->all());
 
-        return redirect()->route('courses.index')->with('success', 'Course updated successfully');
-    }
+    return redirect()->route('courses.index')->with('success', 'Course updated successfully');
+}
+
 
     /**
      * Remove the specified resource from storage.

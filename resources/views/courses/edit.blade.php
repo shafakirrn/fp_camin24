@@ -21,15 +21,21 @@
             <div class="mb-3">
                 <label for="teacher_id" class="form-label">Teacher</label>
                 <select name="teacher_id" class="form-select" id="teacher_id" required>
-                    <option value="">Select teacher</option>
                     @foreach($teachers as $teacher)
-                        <option value="{{ $teacher->id }}" {{ $course->teacher_id == $teacher->id ? 'selected' : '' }}>
-                            {{ $teacher->name }}
-                        </option>
+                        <option value="{{ $teacher->id }}" {{ $course->teacher_id == $teacher->id ? 'selected' : '' }}>{{ $teacher->name }}</option>
                     @endforeach
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="mb-3">
+    <label for="student_id" class="form-label">Student</label>
+    <select name="student_id" class="form-select" id="student_id" required>
+        @foreach($students as $student)
+            <option value="{{ $student->id }}" {{ $course->student_id == $student->id ? 'selected' : '' }}>{{ $student->name }}</option>
+        @endforeach
+    </select>
+</div>
+            
+            <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
 @endsection

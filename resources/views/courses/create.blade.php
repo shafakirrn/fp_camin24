@@ -26,6 +26,16 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-3">
+    <label for="student_id" class="form-label">Student</label>
+    <select name="student_id" class="form-select" id="student_id" required>
+        @foreach($students as $student)
+            <option value="{{ $student->id }}">{{ $student->name }}</option>
+        @endforeach
+    </select>
+</div>
+            
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

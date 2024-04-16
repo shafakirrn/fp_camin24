@@ -7,7 +7,6 @@
     <hr />
     <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
         <div class="row mb-3">
             <div class="col">
                 <input type="text" name="name" class="form-control" placeholder="Name">

@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function (){
     });
 
     Route::controller(CourseController::class)->prefix('courses')->group(function () {
-        Route::get('', 'index')->name('courses');
+        Route::get('', 'index')->name('courses.index');
         Route::get('create', 'create')->name('courses.create');
         Route::post('store', 'store')->name('courses.store');
         Route::get('show/{id}', 'show')->name('courses.show');
